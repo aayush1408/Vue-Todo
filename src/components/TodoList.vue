@@ -1,16 +1,13 @@
 <template>
     <div>
-        <ul>
-            <li>Todo A</li>
-            <li>Todo B</li>
-            <li>Todo C</li>
-        </ul>
+      <p>Completed task: {{  todos.filter((todo) => { return todo.done===true }).length }}</p>
+      <p>Incompleted task: {{ todos.filter((todo) =>{return todo.done===false}).length }}</p>
     </div>
 </template>
 
 <script type="text/javascript">
     export default{
-
+        props:['todos']
     };
 </script>
 
