@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <todo-list v-bind:todos="todos"></todo-list> 
+    <create-todo v-on:create-todo="createTodo"></create-todo>
   </div>
 </template>
 import TodoList from './components/TodoList.vue';
-
+import CreateTodo from './components/CreateTodo.vue';
 <script>
 import TodoList from './components/TodoList.vue';
+import CreateTodo from './components/CreateTodo.vue';
 export default {
   
   components:{
-    TodoList
+    TodoList,
+    CreateTodo
   },
   
   data(){
@@ -18,25 +21,31 @@ export default {
       todos: [{
         title: 'Todo A',
         project: 'Project A',
-        done: false,
+        done: false
       }, {
         title: 'Todo B',
         project: 'Project B',
-        done: true,
+        done: true
       }, {
         title: 'Todo C',
         project: 'Project C',
-        done: false,
+        done: false
       }, {
         title: 'Todo D',
         project: 'Project D',
-        done: false,
+        done: false
       }]
+    }
+  },
+  methods: {
+     createTodo(newTodo) {
+      this.todos.push(newTodo);
+    }
     }
   }
 
 
-}
+
 </script>
 
 <style>
