@@ -38,7 +38,7 @@ export default {
     };
   },
   methods: {
-    openForm() {
+    openForm(){ 
       this.isCreating = true;
     },
     closeForm() {

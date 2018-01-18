@@ -5,10 +5,13 @@
   </div>
 </template>
 import TodoList from './components/TodoList.vue';
+import axios from 'axios';
+
 import CreateTodo from './components/CreateTodo.vue';
 <script>
 import TodoList from './components/TodoList.vue';
 import CreateTodo from './components/CreateTodo.vue';
+import axios from 'axios';
 export default {
   
   components:{
@@ -18,24 +21,17 @@ export default {
   
   data(){
     return{
-      todos: [{
-        title: 'Todo A',
-        project: 'Project A',
-        done: false
-      }, {
-        title: 'Todo B',
-        project: 'Project B',
-        done: true
-      }, {
-        title: 'Todo C',
-        project: 'Project C',
-        done: false
-      }, {
-        title: 'Todo D',
-        project: 'Project D',
-        done: false
-      }]
+      todos:[]
     }
+  },
+  beforeMount(){
+      axios.get('http://localhost:5000/todos')
+      .then(function (response) {
+         this.todos.push(...response.data);
+    }.bind(this))
+    .catch(function (error) {
+        console.log(error.message);
+    });
   },
   methods: {
      createTodo(newTodo) {
